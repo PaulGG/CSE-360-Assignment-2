@@ -2,7 +2,9 @@
  * Name: Andrew Gellai
  * Class ID: 382
  * Assignment: Homework 1
- * Description: A simple calculator class which contains basic arithmetic operations.
+ * Description: A simple calculator class which contains basic arithmetic operations. 
+ * 				History for the calculator is stored in a string, and all arithmetic operations
+ *				are done on a value (0) that is stored in the calculator from the start. 
  */
 
 package cse360assign2;
@@ -10,9 +12,14 @@ package cse360assign2;
 public class Calculator {
 
 	private int total;
+	private String history;
 	
+	/**
+	 * Sets total to 0 and ensures the history has the total in it.
+	 */
 	public Calculator () {
-		total = 0;  // not needed - included for clarity
+		total = 0;  
+		history = "" + total;
 	}
 	
 	/**
@@ -30,6 +37,8 @@ public class Calculator {
 	 */
 	public void add (int value) {
 		this.total += value;
+		// Adds addition operator to history with value.
+		this.history += " + " + value;
 	}
 	
 	/**
@@ -38,6 +47,8 @@ public class Calculator {
 	 */
 	public void subtract (int value) {
 		this.total -= value;
+		// Adds subtraction operator to history with value.
+		this.history += " - " + value;
 	}
 	
 	/**
@@ -46,6 +57,8 @@ public class Calculator {
 	 */
 	public void multiply (int value) {
 		this.total *= value;
+		// Adds multiplication operator to history with value.
+		this.history += " * " + value;
 	}
 	
 	/**
@@ -54,11 +67,14 @@ public class Calculator {
 	 * @return the total value of calculator
 	 */
 	public void divide (int value) {
+		// Division by zero is not possible, so if the value is zero, set the total to zero.
 		if (value == 0) {
 			this.total = 0;
 		} else {
 			this.total /= value;
 		}
+		// Adds division operator to history with value.
+		this.history += " / " + value;
 	}
 	
 	/**
@@ -67,6 +83,6 @@ public class Calculator {
 	 * @return the total value of calculator
 	 */
 	public String getHistory () {
-		return "";
+		return history;
 	}
 }
